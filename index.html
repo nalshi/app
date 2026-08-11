@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر ريشة فن | للهدايا واللوحات الفنية والباقات الفاخرة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#c2185b;--primary-hover:#9c0f45;--primary-light:#fce4ec;--accent:#d4af37;--accent-hover:#b89628;--whatsapp:#25d366;--whatsapp-hover:#1da851;--dark:#1f1924;--light-bg:#fff8f9;--card-bg:#ffffff;--text:#2d2633;--muted:#756a7d;--border:#f0dfb6;--danger:#e53935;--radius-lg:20px;--radius-md:12px;--shadow-sm:0 4px 15px rgba(194,24,91,0.06);--shadow-md:0 8px 30px rgba(194,24,91,0.12);--shadow-hover:0 15px 35px rgba(194,24,91,0.18)}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;overflow-x:hidden;background-color:var(--light-bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+.top-phone-bar{background:linear-gradient(90deg,#1f1924,#3d1c28);color:white;padding:8px 15px;font-size:12px;font-weight:600}
+.top-phone-container{max-width:1250px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.phone-badge{display:flex;align-items:center;gap:6px;background:rgba(37,211,102,0.15);padding:4px 10px;border-radius:20px;border:1px solid rgba(37,211,102,0.4)}
+.phone-badge a{color:var(--whatsapp);text-decoration:none;font-weight:800;direction:ltr}
+.cloud-sync-status{display:flex;align-items:center;gap:6px;font-size:11px;color:#81c784}
+header{background:rgba(255,255,255,0.98);backdrop-filter:blur(10px);position:sticky;top:0;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,0.05);border-bottom:1px solid rgba(194,24,91,0.1)}
+.nav-container{max-width:1250px;margin:0 auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--dark)}
+.brand-logo i{font-size:22px;color:var(--accent);background:#fff8e1;padding:8px;border-radius:50%;border:1px solid #ffe082}
+.brand-title{font-size:22px;font-weight:900;background:linear-gradient(45deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.brand-subtitle{font-size:10px;color:var(--muted);font-weight:600;display:block;margin-top:-3px}
+.search-box{position:relative;flex:1;max-width:400px;min-width:200px}
+.search-box input{width:100%;padding:9px 38px 9px 12px;border:2px solid #f0e6eb;border-radius:30px;font-size:13px;outline:none;transition:all 0.3s;background-color:#fff}
+.search-box input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(194,24,91,0.1)}
+.search-box i{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.header-actions{display:flex;align-items:center;gap:8px}
+.btn-add-product-main{background:linear-gradient(45deg,var(--primary),#d81b60);color:white;border:none;padding:8px 15px;border-radius:25px;cursor:pointer;font-size:13px;font-weight:800;display:flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(194,24,91,0.25);transition:all 0.3s}
+.btn-add-product-main:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(194,24,91,0.35)}
+.btn-header-wa{background:linear-gradient(45deg,var(--whatsapp),#128c7e);color:white;text-decoration:none;padding:8px 14px;border-radius:25px;font-size:12px;font-weight:800;display:flex;align-items:center;gap:6px}
+.admin-banner{display:none;background:linear-gradient(90deg,#1f1924,#c2185b);color:white;padding:10px 16px;font-size:13px;font-weight:600;border-bottom:2px solid var(--accent)}
+.admin-banner-content{max-width:1250px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.admin-controls-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btn-admin-action{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);color:white;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:5px;transition:all 0.2s}
+.btn-admin-action:hover{background:rgba(255,255,255,0.35);transform:translateY(-1px)}
+.btn-change-pass{background:linear-gradient(45deg,var(--accent),#f39c12);color:var(--dark);border:none}
+.btn-change-pass:hover{background:linear-gradient(45deg,#e67e22,var(--accent));color:white}
+.btn-admin-logout{background:#e53935;border:none}
+.btn-admin-logout:hover{background:#c62828}
+.hero{background:linear-gradient(135deg,#fff0f5 0%,#fff7ea 50%,#fce4ec 100%);padding:35px 16px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid #f8e1eb}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;border-radius:50%;background:rgba(212,175,55,0.1)}
+.hero-title{font-size:clamp(22px, 5vw, 36px);font-weight:900;color:var(--dark);margin-bottom:10px;line-height:1.3}
+.hero-title span{color:var(--primary)}
+.hero-desc{font-size:clamp(13px, 3.5vw, 17px);color:var(--muted);max-width:650px;margin:0 auto 20px;font-weight:500}
+.features-pills{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.pill-item{background:white;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;color:var(--dark);box-shadow:0 4px 10px rgba(0,0,0,0.04);display:flex;align-items:center;gap:6px;border:1px solid #f5e6ec}
+.pill-item i{color:var(--accent)}
+.main-container{max-width:1250px;margin:25px auto;padding:0 15px;flex:1;width:100%}
+.category-section{margin-bottom:25px}
+.category-bar{display:flex;gap:8px;overflow-x:auto;padding:5px 5px 12px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.category-btn{background:white;border:1.5px solid #eae0e5;color:var(--dark);padding:8px 18px;border-radius:30px;cursor:pointer;font-weight:700;font-size:13px;white-space:nowrap;transition:all 0.3s;display:flex;align-items:center;gap:6px;box-shadow:0 2px 6px rgba(0,0,0,0.02)}
+.category-btn:hover,.category-btn.active{background:var(--primary);color:white;border-color:var(--primary);box-shadow:0 6px 18px rgba(194,24,91,0.25);transform:translateY(-2px)}
+.category-count{background:rgba(0,0,0,0.08);padding:2px 7px;border-radius:12px;font-size:11px}
+.category-btn.active .category-count{background:rgba(255,255,255,0.25)}
+.products-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+.section-title{font-size:clamp(18px, 4vw, 22px);font-weight:800;color:var(--dark);position:relative;padding-right:12px}
+.section-title::before{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);width:4px;height:20px;background:var(--primary);border-radius:3px}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
+.product-card{background:var(--card-bg);border-radius:var(--radius-lg);overflow:hidden;border:1px solid #f3e5eb;box-shadow:var(--shadow-sm);transition:all 0.35s cubic-bezier(0.165,0.84,0.44,1);display:flex;flex-direction:column;position:relative;width:100%}
+.product-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:#f8bbd0}
+.card-image-wrap{position:relative;width:100%;height:220px;overflow:hidden;background:#fdf5f8}
+.product-img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease}
+.product-card:hover .product-img{transform:scale(1.06)}
+.badge-tag{position:absolute;top:10px;right:10px;background:linear-gradient(45deg,var(--accent),#f39c12);color:white;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;box-shadow:0 4px 10px rgba(0,0,0,0.15);z-index:2}
+.card-body{padding:16px;display:flex;flex-direction:column;flex-grow:1}
+.card-category{font-size:11px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.card-title{font-size:16px;font-weight:800;color:var(--dark);margin-bottom:6px;line-height:1.4}
+.card-desc{font-size:12px;color:var(--muted);margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5}
+.card-footer{margin-top:auto;padding-top:12px;border-top:1px dashed #f5e6ec;display:flex;flex-direction:column;gap:10px}
+.price-tag{font-size:18px;font-weight:900;color:var(--primary);display:flex;align-items:baseline;gap:4px}
+.btn-whatsapp-order{background:linear-gradient(45deg,var(--whatsapp),#128c7e);color:white;border:none;padding:10px 14px;border-radius:var(--radius-md);cursor:pointer;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;transition:all 0.3s;box-shadow:0 4px 12px rgba(37,211,102,0.25);text-decoration:none}
+.btn-whatsapp-order:hover{background:linear-gradient(45deg,var(--whatsapp-hover),#0e7368);box-shadow:0 6px 18px rgba(37,211,102,0.4);transform:translateY(-2px)}
+.admin-card-actions{display:none;gap:6px;margin-top:6px}
+.admin-card-actions.visible{display:flex !important}
+.btn-card-edit{flex:1;background:#fff8e1;color:#f57f17;border:1px solid #ffe082;padding:7px;border-radius:8px;cursor:pointer;font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center;gap:4px;transition:all 0.2s}
+.btn-card-edit:hover{background:#ffecb3;color:#e65100}
+.btn-card-delete{flex:1;background:#ffebee;color:#c62828;border:1px solid #ffcdd2;padding:7px;border-radius:8px;cursor:pointer;font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center;gap:4px;transition:all 0.2s}
+.btn-card-delete:hover{background:#ffcdd2;color:#b71c1c}
+.whatsapp-upload-box{background:#e8f5e9;border:2px dashed #81c784;border-radius:var(--radius-md);padding:14px;text-align:center;cursor:pointer;transition:all 0.3s;margin-bottom:10px}
+.whatsapp-upload-box:hover{background:#c8e6c9;border-color:#388e3c}
+.whatsapp-upload-btn{background:var(--whatsapp);color:white;border:none;padding:8px 16px;border-radius:20px;font-weight:800;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;margin-top:5px;box-shadow:0 4px 10px rgba(37,211,102,0.3)}
+.no-products{grid-column:1/-1;text-align:center;padding:50px 15px;background:white;border-radius:20px;border:2px dashed #eedce4}
+.no-products i{font-size:40px;color:var(--muted);margin-bottom:12px}
+footer{background:var(--dark);color:white;padding:35px 16px 20px;margin-top:auto}
+.footer-content{max-width:1250px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:20px}
+.footer-brand{display:flex;align-items:center;gap:10px}
+.footer-brand i{font-size:22px;color:var(--accent)}
+.footer-bottom{max-width:1250px;margin:15px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.owner-login-link{display:none !important;cursor:pointer;opacity:0.6;font-size:12px;color:#d1c4e9;transition:all 0.3s;text-decoration:none;padding:5px 12px;border-radius:15px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15)}
+.owner-login-link.visible{display:inline-block !important}
+.owner-login-link:hover{opacity:1;background:rgba(255,255,255,0.25);color:white}
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);backdrop-filter:blur(5px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:15px;opacity:0;pointer-events:none;transition:opacity 0.3s ease}
+.modal-overlay.active{opacity:1;pointer-events:auto}
+.modal-box{background:white;width:100%;max-width:520px;border-radius:var(--radius-lg);box-shadow:0 20px 50px rgba(0,0,0,0.25);overflow:hidden;transform:translateY(20px);transition:transform 0.3s ease;max-height:92vh;display:flex;flex-direction:column}
+.modal-overlay.active .modal-box{transform:translateY(0)}
+.modal-header{background:linear-gradient(45deg,var(--primary),var(--primary-hover));color:white;padding:15px 20px;display:flex;justify-content:space-between;align-items:center}
+.modal-header h3{font-size:16px;font-weight:800;display:flex;align-items:center;gap:6px}
+.modal-close{background:rgba(255,255,255,0.2);border:none;color:white;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:background 0.2s}
+.modal-close:hover{background:rgba(255,255,255,0.4)}
+.modal-body{padding:20px;overflow-y:auto}
+.form-group{margin-bottom:15px}
+.form-group label{display:block;font-weight:700;font-size:13px;color:var(--dark);margin-bottom:5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 12px;border:1.5px solid #e2d7dd;border-radius:var(--radius-md);font-size:13px;outline:none;transition:border-color 0.3s;background:#faf7f8}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary);background:white}
+.image-preview-box{width:100%;height:130px;border:2px dashed #ddd;border-radius:var(--radius-md);margin-top:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fafafa;position:relative}
+.image-preview-box img{width:100%;height:100%;object-fit:cover}
+.image-presets{display:flex;gap:6px;margin-top:8px;overflow-x:auto;padding-bottom:5px}
+.preset-thumb{width:45px;height:45px;border-radius:8px;object-fit:cover;cursor:pointer;border:2px solid transparent;transition:all 0.2s}
+.preset-thumb:hover{border-color:var(--primary);transform:scale(1.05)}
+.btn-submit-form{background:linear-gradient(45deg,var(--primary),var(--primary-hover));color:white;border:none;width:100%;padding:12px;border-radius:var(--radius-md);font-weight:800;font-size:14px;cursor:pointer;box-shadow:0 4px 15px rgba(194,24,91,0.3);transition:all 0.3s;margin-top:8px}
+.btn-submit-form:hover{opacity:0.95;transform:translateY(-1px)}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--dark);color:white;padding:10px 18px;border-radius:30px;box-shadow:0 8px 25px rgba(0,0,0,0.3);display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;z-index:3000;opacity:0;transform:translateY(20px);transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275);pointer-events:none;max-width:90%}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast.success{border-right:5px solid var(--whatsapp)}
+.toast.error{border-right:5px solid var(--danger)}
+.toast.info{border-right:5px solid var(--accent)}
+.float-wa{position:fixed;bottom:20px;left:20px;width:50px;height:50px;background:linear-gradient(45deg,var(--whatsapp),#128c7e);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:25px;box-shadow:0 6px 20px rgba(37,211,102,0.4);z-index:999;text-decoration:none;transition:all 0.3s ease;animation:pulse-wa 2s infinite}
+.float-wa:hover{transform:scale(1.1);box-shadow:0 8px 25px rgba(37,211,102,0.55);color:white}
+@keyframes pulse-wa{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.5)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+.scroll-top-btn{position:fixed;bottom:80px;left:20px;width:40px;height:40px;background:var(--dark);color:white;border:none;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,0.2);z-index:999;transition:all 0.3s ease;opacity:0;pointer-events:none;transform:translateY(10px)}
+.scroll-top-btn.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+.scroll-top-btn:hover{background:var(--primary);transform:translateY(-3px);box-shadow:0 6px 20px rgba(194,24,91,0.4)}
+.btn-share-product{background:#f3e5f5;color:#7b1fa2;border:1px solid #e1bee7;padding:7px;border-radius:8px;cursor:pointer;font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center;gap:4px;transition:all 0.2s;flex:1}
+.btn-share-product:hover{background:#e1bee7;color:#4a148c}
+
+/* ===== التنسيقات الاستجابية للهواتف والشاشات الصغيرة (Mobile Responsive) ===== */
+@media (max-width: 768px){
+  .nav-container{flex-direction:column;align-items:stretch;gap:10px;padding:10px 12px}
+  .brand-logo{justify-content:center}
+  .search-box{max-width:100%;min-width:100%}
+  .header-actions{justify-content:center;width:100%}
+  .top-phone-container{flex-direction:column;text-align:center;gap:5px}
+  .hero{padding:25px 12px}
+  .hero-title{font-size:22px}
+  .hero-desc{font-size:13px;margin-bottom:15px}
+  .features-pills{gap:6px}
+  .pill-item{font-size:11px;padding:5px 10px}
+  .products-grid{grid-template-columns:repeat(2, 1fr);gap:12px}
+  .card-image-wrap{height:150px}
+  .card-body{padding:10px}
+  .card-title{font-size:14px;margin-bottom:4px}
+  .card-desc{font-size:11px;-webkit-line-clamp:2;margin-bottom:8px}
+  .price-tag{font-size:15px}
+  .btn-whatsapp-order{font-size:11px;padding:8px 6px;gap:5px}
+  .btn-share-product,.btn-card-edit,.btn-card-delete{font-size:10px;padding:5px}
+  .footer-content{flex-direction:column;text-align:center;gap:10px}
+  .footer-bottom{flex-direction:column;gap:8px;text-align:center}
+}
+@media (max-width: 420px){
+  .products-grid{grid-template-columns:repeat(2, 1fr);gap:8px}
+  .card-image-wrap{height:130px}
+  .card-body{padding:8px}
+  .card-title{font-size:13px}
+  .price-tag{font-size:14px}
+}
+</style></head>
+<body>
+<div class="top-phone-bar">
+<div class="top-phone-container">
+<div class="cloud-sync-status">
+<i class="fa-solid fa-globe" style="color:var(--whatsapp)" id="cloudSyncIcon"></i>
+<span id="cloudSyncText">متجر ريشة فن مرفوع على الإنترنت ☁️</span>
+</div>
+<div class="phone-badge">
+<i class="fa-brands fa-whatsapp" style="color:var(--whatsapp);font-size:16px"></i>
+<span>الرقم اليمني للطلب:</span>
+<a href="https://wa.me/967739375541" target="_blank">+967 739375541</a>
+</div>
+</div>
+</div>
+<header>
+<div class="nav-container">
+<a href="#" class="brand-logo" title="متجر ريشة فن">
+<i class="fa-solid fa-feather-pointed"></i>
+<div><span class="brand-title">ريشة فن ✨</span><span class="brand-subtitle">للهدايا واللوحات الفنية والباقات الفاخرة</span></div>
+</a>
+<div class="search-box">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input type="text" id="searchInput" placeholder="ابحث عن باقة ورد، لوحة فنية، شوكولاتة..." oninput="handleSearch()">
+</div>
+<div class="header-actions">
+<button class="btn-add-product-main admin-only-btn" id="headerAddBtn" style="display:none" onclick="openAddProductModal()"><i class="fa-solid fa-circle-plus"></i><span>إضافة منتج جديد</span></button>
+<a href="https://wa.me/967739375541" target="_blank" class="btn-header-wa"><i class="fa-brands fa-whatsapp"></i><span>739375541</span></a>
+</div>
+</div>
+</header>
+<div class="admin-banner" id="adminBanner">
+<div class="admin-banner-content">
+<div><i class="fa-solid fa-shield-halved"></i><span>مرحباً بك! أنت الآن في <strong>لوحة إدارة صاحب المتجر 🔑</strong> (متصل بالباكيند)</span></div>
+<div class="admin-controls-group">
+<button class="btn-admin-action" onclick="openAddProductModal()"><i class="fa-solid fa-circle-plus"></i> إضافة منتج جديد</button>
+<span style="display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.1);padding:4px 10px;border-radius:20px">
+<i class="fa-brands fa-whatsapp" style="color:#25d366"></i>
+<input type="text" id="adminWhatsAppInput" value="967739375541" style="width:120px;padding:4px 8px;border-radius:12px;border:none;font-size:12px;background:rgba(255,255,255,0.9);color:#333;direction:ltr" placeholder="رقم الواتساب">
+<button onclick="saveWhatsAppNumber()" style="background:#25d366;border:none;color:white;padding:4px 10px;border-radius:12px;cursor:pointer;font-size:11px;font-weight:700"><i class="fa-solid fa-check"></i></button>
+</span>
+<button class="btn-admin-action btn-change-pass" onclick="openChangePasswordModal()"><i class="fa-solid fa-key"></i> تغيير كلمة المرور</button>
+<button class="btn-admin-action btn-admin-logout" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket"></i> إنهاء وضع الإدارة</button>
+</div>
+</div>
+</div>
+<section class="hero">
+<h1 class="hero-title">اجعل لحظاتك السعيدة <span>تحفة فنية</span> 🎨🌸</h1>
+<p class="hero-desc">نصمم لك في متجر <strong>ريشة فن</strong> أجمل باقات الورود الطبيعية واللوحات الفنية وشوكولاتة الهدايا بحب وإتقان.</p>
+<div class="features-pills">
+<div class="pill-item"><i class="fa-solid fa-truck-fast"></i> توصيل سريع وسلس</div>
+<div class="pill-item"><i class="fa-solid fa-wand-magic-sparkles"></i> تنسيق يدوي محترف</div>
+<div class="pill-item"><i class="fa-brands fa-whatsapp"></i> طلب مباشر عبر الواتساب (739375541)</div>
+</div>
+</section>
+<main class="main-container">
+<section class="category-section"><div class="category-bar" id="categoryBar"></div></section>
+<section>
+<div class="products-header">
+<h2 class="section-title" id="sectionTitle">جميع المنتجات والباقات</h2>
+<button class="btn-admin-action admin-only-btn" id="sectionAddBtn" style="background:var(--primary);border:none;display:none" onclick="openAddProductModal()"><i class="fa-solid fa-plus"></i> إضافة اسم منتج وصورة للمتجر</button>
+</div>
+<div class="products-grid" id="productsGrid"></div>
+</section>
+</main>
+<footer>
+<div class="footer-content">
+<div class="footer-brand">
+<i class="fa-solid fa-feather-pointed"></i>
+<div><h4 style="font-weight:800;font-size:16px">متجر ريشة فن للهدايا والتحف الفنية</h4><p style="font-size:13px;color:#a097a8">نبتكر الهدايا واللوحات التي تسعد القلب والروح.</p></div>
+</div>
+<div><p style="font-size:14px"><i class="fa-brands fa-whatsapp" style="color:var(--whatsapp)"></i> للطلبات المباشرة عبر الواتساب: <strong style="color:var(--whatsapp);direction:ltr">+967 739375541</strong></p></div>
+</div>
+<div class="footer-bottom">
+<div></div>
+<span class="owner-login-link" onclick="openAdminLoginModal()" title="دخول صاحب المتجر لربط وإضافة المنتجات 🔐">🔐 دخول مالك المتجر</span>
+</div>
+</footer>
+
+<div class="modal-overlay" id="adminLoginModal">
+<div class="modal-box">
+<div class="modal-header"><h3><i class="fa-solid fa-lock"></i> تسجيل دخول مالك المتجر</h3><button class="modal-close" onclick="closeModal('adminLoginModal')">&times;</button></div>
+<div class="modal-body">
+<form onsubmit="handleAdminLogin(event)">
+<div class="form-group"><label for="adminPassword">رمز الدخول السري (كلمة المرور):</label><input type="password" id="adminPassword" placeholder="أدخل كلمة المرور السرية (الافتراضية: 123456)..." required autocomplete="current-password"></div>
+<button type="submit" class="btn-submit-form"><i class="fa-solid fa-key"></i> تأكيد الدخول وتفعيل أزرار الإضافة</button>
+</form>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay" id="changePasswordModal">
+<div class="modal-box">
+<div class="modal-header" style="background:linear-gradient(45deg,#1f1924,var(--primary))"><h3><i class="fa-solid fa-key"></i> تغيير كلمة المرور لمالك المتجر</h3><button class="modal-close" onclick="closeModal('changePasswordModal')">&times;</button></div>
+<div class="modal-body">
+<form onsubmit="handleChangePassword(event)">
+<div class="form-group"><label for="currentPass">كلمة المرور الحالية: *</label><input type="password" id="currentPass" placeholder="أدخل كلمة المرور الحالية..." required></div>
+<div class="form-group"><label for="newPass">كلمة المرور الجديدة: *</label><input type="password" id="newPass" placeholder="أدخل كلمة المرور الجديدة..." required minlength="4"></div>
+<div class="form-group"><label for="confirmNewPass">تأكيد كلمة المرور الجديدة: *</label><input type="password" id="confirmNewPass" placeholder="أعِد كتابة كلمة المرور الجديدة..." required minlength="4"></div>
+<button type="submit" class="btn-submit-form" style="background:linear-gradient(45deg,var(--accent),#e67e22);color:white"><i class="fa-solid fa-shield-check"></i> حفظ وتحديث كلمة المرور السرية</button>
+</form>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay" id="productFormModal">
+<div class="modal-box">
+<div class="modal-header"><h3 id="modalProductTitle"><i class="fa-solid fa-plus-circle"></i> إضافة منتج جديد إلى متجر ريشة فن</h3><button class="modal-close" onclick="closeModal('productFormModal')">&times;</button></div>
+<div class="modal-body">
+<form id="productForm" onsubmit="handleSaveProduct(event)">
+<input type="hidden" id="editProductId" value="">
+<div class="form-group"><label for="pTitle">اسم المنتج / الباقة: *</label><input type="text" id="pTitle" placeholder="مثال: لوحة جدارية مخصصة أو باقة ورود وردية" required></div>
+<div class="form-group"><label for="pCategory">التصنيف: *</label><select id="pCategory" required><option value="ورود">🌸 باقات ورد</option><option value="لوحات وتحف">🎨 لوحات وتحف فنية</option><option value="شوكولاتة">🍫 باقات شوكولاتة</option><option value="تخرج">🎓 هدايا تخرج</option><option value="عطور">✨ عطور وهدايا فاخرة</option><option value="كيك">🎂 كيك ومناسبات</option></select></div>
+<div class="form-group"><label for="pPrice">السعر: *</label><input type="text" id="pPrice" placeholder="مثال: 5000 ر.ي أو 150 ر.س" required></div>
+<div class="form-group"><label for="pBadge">شارة تمييز (اختياري):</label><input type="text" id="pBadge" placeholder="مثال: الأكثر مبيعاً، جديد، خصم خاص"></div>
+<div class="form-group"><label for="pDescription">الوصف التفصيلي للمنتج:</label><textarea id="pDescription" rows="3" placeholder="اكتب وصفاً جذاباً لمحتويات المنتج أو التنسيق الفني..."></textarea></div>
+<div class="form-group">
+<label><i class="fa-solid fa-image"></i> صورة المنتج (من الواتساب أو الجهاز): *</label>
+<div class="whatsapp-upload-box" onclick="document.getElementById('pImageFile').click()">
+<i class="fa-brands fa-whatsapp" style="font-size:32px;color:var(--whatsapp)"></i>
+<p style="font-weight:700;font-size:14px;margin-top:5px;color:#2e7d32">اضغط هنا لرفع صورة من الواتساب أو استوديو الصور</p>
+<small style="color:var(--muted);font-size:11px">سيتم ضغط الصورة تلقائياً لتظهر لجميع العملاء بسلاسة⚡</small><br>
+<button type="button" class="whatsapp-upload-btn"><i class="fa-solid fa-folder-open"></i> اختيار صورة الآن</button>
+<input type="file" id="pImageFile" accept="image/*" style="display:none" onchange="handleImageFileUpload(event)">
+</div>
+<label for="pImgUrl" style="font-size:12px;margin-top:8px">أو ضع رابط الصورة مباشرة (URL):</label>
+<input type="url" id="pImgUrl" placeholder="https://example.com/image.jpg" oninput="updateImagePreview(this.value)">
+<p style="font-size:11px;color:var(--muted);margin-top:8px">أو اختر من الصور الفنية المتاحة:</p>
+<div class="image-presets">
+<img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500" class="preset-thumb" onclick="selectPresetImage(this.src)" title="ورد أحمر">
+<img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500" class="preset-thumb" onclick="selectPresetImage(this.src)" title="هدية لوحة">
+<img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=500" class="preset-thumb" onclick="selectPresetImage(this.src)" title="شوكولاتة">
+<img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=500" class="preset-thumb" onclick="selectPresetImage(this.src)" title="ورد وردي">
+<img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500" class="preset-thumb" onclick="selectPresetImage(this.src)" title="عطور ورود">
+</div>
+<div class="image-preview-box" id="imagePreviewBox">
+<span style="font-size:12px;color:var(--muted)" id="previewPlaceholder">معاينة الصورة ستظهر هنا</span>
+<img id="imgPreview" src="" alt="" style="display:none">
+</div>
+</div>
+<button type="submit" class="btn-submit-form"><i class="fa-solid fa-cloud-arrow-up"></i> حفظ ونشر المنتج أونلاين لجميع العملاء ☁️</button>
+</form>
+</div>
+</div>
+</div>
+
+<div class="toast" id="toast"><i class="fa-solid fa-circle-check" id="toastIcon"></i><span id="toastMessage">تمت العملية بنجاح</span></div>
+<a class="float-wa" href="https://wa.me/967739375541" target="_blank" title="تواصل معنا واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()" title="العودة للأعلى"><i class="fa-solid fa-chevron-up"></i></button>
+
+<script>
+const STORAGE_KEY_PRODUCTS = 'gifts_store_products_db_v2';
+const STORAGE_KEY_PASS = 'gifts_store_admin_pass';
+const STORAGE_KEY_ADMIN = 'gifts_store_admin_status';
+const STORAGE_KEY_WHATSAPP = 'gifts_store_whatsapp_phone';
+const DEFAULT_ADMIN_PASSWORD = '123456';
+const DEFAULT_WHATSAPP_PHONE = '967739375541';
+
+const DEFAULT_PRODUCTS = [
+  {id:1,title:"لوحة تحفة فنية مخصصة بالذهب",category:"لوحات وتحف",price:"12,000 ر.ي",badge:"الأكثر مبيعاً",desc:"لوحة جدارية فنية أنيقة مصممة بلمسات ريشة فن وورق الذهب مع إمكانية كتابة الاسم حسب الطلب.",imgUrl:"https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=600&q=80"},
+  {id:2,title:"باقة ريشة فن الفاخرة",category:"ورود",price:"8,500 ر.ي",badge:"تنسيق خاص",desc:"باقة فاخرة تجمع بين الورود الجورية الطبيعية وأغصان اللافندر بتنسيق يدوي راقٍ.",imgUrl:"https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=600&q=80"},
+  {id:3,title:"صندوق شوكولاتة وتحفة فنية",category:"شوكولاتة",price:"10,000 ر.ي",badge:"جديد",desc:"صندوق إهداء مميز يضم أجود أنواع الشوكولاتة المحشوة مع ورد طبيعي كهدية تليق بأحبابك.",imgUrl:"https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=600&q=80"},
+  {id:4,title:"باقة الورد الوردي والرقيق",category:"ورود",price:"6,000 ر.ي",badge:"",desc:"تنسيق رقيق وناعم من زهور الورد الوردي الهولندي يناسب المناسبات السعيدة.",imgUrl:"https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=600&q=80"},
+  {id:5,title:"مجموعة العطور والورود الفاخرة",category:"عطور",price:"15,000 ر.ي",badge:"هدية مميزة",desc:"صندوق خشبي مزخرف يحتوي على عطر فرنسي فاخر محاط بالورد الطبيعي والمسك.",imgUrl:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=600&q=80"}
+];
+
+let products = [];
+let activeCategory = 'الكل';
+let searchQuery = '';
+let isAdminLoggedIn = false;
+
+// رابط API الخادم
+function getApiUrl() {
+  if (window.location.protocol.startsWith('http')) {
+    return window.location.origin + '/api/products';
+  }
+  return 'http://localhost:5000/api/products';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadStateFromStorage();
+  fetchProductsFromBackend();
+  renderCategories();
+  renderProducts();
+  updateAdminUI();
+  
+  // طريقة سرية للمالك: النقر المزدوج على شعار ريشة فن بـ الهيدر
+  const logo = document.querySelector('.brand-logo');
+  if (logo) {
+    logo.addEventListener('dblclick', (e) => {
+      e.preventDefault();
+      openAdminLoginModal();
+    });
+  }
+  
+  // اختصار لوحة المفاتيح للمالك: Ctrl + Shift + A
+  window.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+      e.preventDefault();
+      openAdminLoginModal();
+    }
+  });
+
+  // تحديث تلقائي للمنتجات كل 10 ثوان لتظهر للعملاء والمالك فوراً
+  setInterval(fetchProductsFromBackend, 10000);
+});
+
+function getWhatsAppNumber() {
+  let num = localStorage.getItem(STORAGE_KEY_WHATSAPP);
+  if (!num || num === '966500000000') {
+    num = DEFAULT_WHATSAPP_PHONE;
+    localStorage.setItem(STORAGE_KEY_WHATSAPP, DEFAULT_WHATSAPP_PHONE);
+  }
+  return num;
+}
+
+function getAdminPassword() {
+  return localStorage.getItem(STORAGE_KEY_PASS) || DEFAULT_ADMIN_PASSWORD;
+}
+
+// تحميل البيانات من الذاكرة المحلية كنسخة أولية وسريعة
+function loadStateFromStorage() {
+  const local = localStorage.getItem(STORAGE_KEY_PRODUCTS);
+  if (local) {
+    try {
+      const parsed = JSON.parse(local);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        products = parsed;
+      }
+    } catch (e) {}
+  }
+  if (!products || products.length === 0) {
+    products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+  }
+  isAdminLoggedIn = localStorage.getItem(STORAGE_KEY_ADMIN) === 'true';
+}
+
+// جلب أحدث المنتجات من الخادم أونلاين
+async function fetchProductsFromBackend() {
+  const syncIcon = document.getElementById('cloudSyncIcon');
+  const syncText = document.getElementById('cloudSyncText');
+  try {
+    const res = await fetch(getApiUrl());
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        products = data;
+        saveProductsToStorage(false); // حفظ محلي كنسخة احتياطية
+        renderCategories();
+        renderProducts();
+        if (syncIcon) syncIcon.style.color = '#25d366';
+        if (syncText) syncText.textContent = 'متجر ريشة فن متصل بالخادم وتظهر المنتجات لجميع العملاء 🟢';
+      }
+    }
+  } catch (err) {
+    if (syncIcon) syncIcon.style.color = '#ff9800';
+    if (syncText) syncText.textContent = 'متجر ريشة فن يعمل بالوضع المحلي (شغّل "تشغيل المتجر.bat" لربط العملاء) ☁️';
+  }
+}
+
+function saveProductsToStorage(syncBackend = true) {
+  try {
+    localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(products));
+  } catch (e) {
+    if (e.name === 'QuotaExceededError' || e.code === 22) {
+      showToast('مساحة التخزين المحلية ممتلئة! استخدم روابط صور خارجية.', 'error');
+    }
+  }
+  if (syncBackend) {
+    saveProductsToBackend(products);
+  }
+}
+
+// حفظ المنتجات على الخادم لراحتك ولتظهر لكافة العملاء
+async function saveProductsToBackend(productsList) {
+  try {
+    const res = await fetch(getApiUrl(), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(productsList)
+    });
+    if (res.ok) {
+      console.log('✅ تم التزامن مع خادم ريشة فن بنجاح!');
+    }
+  } catch (err) {
+    console.warn('تنبيه: الخادم غير متصل حالياً، تم الحفظ محلياً. شغل تشغيل المتجر.bat للمزامنة أونلاين.');
+  }
+}
+
+// حذف منتج من الخادم
+async function deleteProductFromBackend(id) {
+  try {
+    await fetch(`${getApiUrl()}/${id}`, { method: 'DELETE' });
+  } catch (err) {}
+}
+
+function renderCategories() {
+  const cats = [
+    {name:'الكل',icon:'fa-layer-group'},
+    {name:'ورود',icon:'fa-spa'},
+    {name:'لوحات وتحف',icon:'fa-palette'},
+    {name:'شوكولاتة',icon:'fa-cookie-bite'},
+    {name:'تخرج',icon:'fa-graduation-cap'},
+    {name:'عطور',icon:'fa-spray-can-sparkles'},
+    {name:'كيك',icon:'fa-cake-candles'}
+  ];
+  const bar = document.getElementById('categoryBar');
+  if (!bar) return;
+  bar.innerHTML = cats.map(c => {
+    const count = c.name === 'الكل' ? products.length : products.filter(p => p.category === c.name).length;
+    const active = activeCategory === c.name ? 'active' : '';
+    return `<button class="category-btn ${active}" onclick="filterCategory('${c.name}')"><i class="fa-solid ${c.icon}"></i><span>${c.name === 'الكل' ? 'جميع المنتجات' : c.name}</span><span class="category-count">${count}</span></button>`;
+  }).join('');
+}
+
+function filterCategory(cat) {
+  activeCategory = cat;
+  const title = document.getElementById('sectionTitle');
+  if (title) title.textContent = cat === 'الكل' ? 'جميع المنتجات والباقات' : 'قسم ' + cat;
+  renderCategories();
+  renderProducts();
+}
+
+function handleSearch() {
+  const input = document.getElementById('searchInput');
+  searchQuery = input ? input.value.trim().toLowerCase() : '';
+  renderProducts();
+}
+
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+  
+  let filtered = products.filter(p => {
+    const matchCat = activeCategory === 'الكل' || p.category === activeCategory;
+    const matchSearch = !searchQuery || p.title.toLowerCase().includes(searchQuery) || (p.desc && p.desc.toLowerCase().includes(searchQuery)) || p.price.toLowerCase().includes(searchQuery);
+    return matchCat && matchSearch;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="no-products"><i class="fa-solid fa-paintbrush"></i><h3>لا توجد منتجات مطابقة حالياً في متجر ريشة فن</h3><p style="color: var(--muted); margin-top: 5px;">جرّب البحث باسم آخر أو اختيار تصنيف مختلف.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => {
+    const adminActions = `<div class="admin-card-actions ${isAdminLoggedIn ? 'visible' : ''}">
+      <button class="btn-card-edit" onclick="openEditProductModal(${p.id})"><i class="fa-solid fa-pen-to-square"></i> تعديل</button>
+      <button class="btn-card-delete" onclick="deleteProduct(${p.id})"><i class="fa-solid fa-trash-can"></i> حذف المنتج</button>
+    </div>`;
+
+    return `<div class="product-card">
+      <div class="card-image-wrap">
+        ${p.badge ? `<span class="badge-tag">${escapeHtml(p.badge)}</span>` : ''}
+        <img src="${escapeHtml(p.imgUrl)}" alt="${escapeHtml(p.title)}" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500'">
+      </div>
+      <div class="card-body">
+        <span class="card-category">${escapeHtml(p.category)}</span>
+        <h3 class="card-title">${escapeHtml(p.title)}</h3>
+        <p class="card-desc">${escapeHtml(p.desc || 'تنسيق فاخر من ريشة فن يناسب جميع مناسباتكم السعيدة.')}</p>
+        <div class="card-footer">
+          <div class="price-tag"><span>${escapeHtml(p.price)}</span></div>
+          <button class="btn-whatsapp-order" onclick="orderViaWhatsApp(${p.id})"><i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i><span>طلب عبر الواتساب</span></button>
+          <div style="display:flex;gap:8px">
+            <button class="btn-share-product" onclick="shareProduct(${p.id})"><i class="fa-solid fa-share-nodes"></i> مشاركة</button>
+          </div>
+          ${adminActions}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function orderViaWhatsApp(id) {
+  const p = products.find(item => item.id === id);
+  if (!p) return;
+  const num = getWhatsAppNumber();
+  const msg = `مرحباً متجر ريشة فن 🌸🎨\nأود طلب المنتج التالي:\n\n📌 *اسم المنتج:* ${p.title}\n💰 *السعر:* ${p.price}\n🏷️ *التصنيف:* ${p.category}\n\nيرجى تزويدي بتفاصيل التوصيل والدفع وشكراً!`;
+  window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
+  showToast('جاري توجيهك إلى واتساب ريشة فن...', 'success');
+}
+
+function openAddProductModal() {
+  if (!isAdminLoggedIn) { openAdminLoginModal(); return; }
+  document.getElementById('editProductId').value = '';
+  document.getElementById('productForm').reset();
+  const title = document.getElementById('modalProductTitle');
+  if (title) title.innerHTML = '<i class="fa-solid fa-plus-circle"></i> إضافة منتج جديد إلى متجر ريشة فن';
+  resetImagePreview();
+  openModal('productFormModal');
+}
+
+function openEditProductModal(id) {
+  if (!isAdminLoggedIn) return;
+  const p = products.find(item => item.id === id);
+  if (!p) return;
+  document.getElementById('editProductId').value = p.id;
+  document.getElementById('pTitle').value = p.title;
+  document.getElementById('pCategory').value = p.category;
+  document.getElementById('pPrice').value = p.price;
+  document.getElementById('pBadge').value = p.badge || '';
+  document.getElementById('pDescription').value = p.desc || '';
+  document.getElementById('pImgUrl').value = p.imgUrl;
+  updateImagePreview(p.imgUrl);
+  const title = document.getElementById('modalProductTitle');
+  if (title) title.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> تعديل المنتج';
+  openModal('productFormModal');
+}
+
+function handleImageFileUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  if (!file.type.startsWith('image/')) {
+    showToast('يرجى اختيار ملف صورة صحيح!', 'error');
+    return;
+  }
+  showToast('جاري تجهيز الصورة...', 'info');
+  const reader = new FileReader();
+  reader.onload = function(evt) {
+    const img = new Image();
+    img.onload = function() {
+      const canvas = document.createElement('canvas');
+      let w = img.width, h = img.height, max = 600;
+      if (w > max || h > max) {
+        if (w > h) { h = Math.round(h * max / w); w = max; }
+        else { w = Math.round(w * max / h); h = max; }
+      }
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.4);
+      document.getElementById('pImgUrl').value = dataUrl;
+      updateImagePreview(dataUrl);
+      showToast('تم تجهيز الصورة بنجاح!', 'success');
+    };
+    img.src = evt.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function handleSaveProduct(e) {
+  e.preventDefault();
+  if (!isAdminLoggedIn) return;
+
+  const idVal = document.getElementById('editProductId').value;
+  const title = document.getElementById('pTitle').value.trim();
+  const category = document.getElementById('pCategory').value;
+  const price = document.getElementById('pPrice').value.trim();
+  const badge = document.getElementById('pBadge').value.trim();
+  const desc = document.getElementById('pDescription').value.trim();
+  const imgUrl = document.getElementById('pImgUrl').value.trim();
+
+  if (!title || !price || !imgUrl) {
+    showToast('يرجى ملء كافة الحقول الأساسية وصورة المنتج!', 'error');
+    return;
+  }
+
+  const isEdit = Boolean(idVal);
+  const prodId = isEdit ? parseInt(idVal) : Date.now();
+  const newObj = { id: prodId, title, category, price, badge, desc, imgUrl };
+
+  if (isEdit) {
+    const idx = products.findIndex(item => item.id == idVal);
+    if (idx !== -1) products[idx] = newObj;
+  } else {
+    products.unshift(newObj);
+  }
+
+  saveProductsToStorage(true); // تحفظ وتزامن مع الخادم لتظهر للجميع
+  renderCategories();
+  renderProducts();
+  closeModal('productFormModal');
+  showToast('✅ تم حفظ ونشر المنتج بنجاح لجميع العملاء ☁️', 'success');
+}
+
+function deleteProduct(id) {
+  if (!isAdminLoggedIn) return;
+  const p = products.find(item => item.id === id);
+  const name = p ? p.title : 'هذا المنتج';
+  if (confirm(`هل أنت متأكد من حذف "${name}" من متجر ريشة فن؟`)) {
+    products = products.filter(item => item.id !== id);
+    saveProductsToStorage(true);
+    deleteProductFromBackend(id);
+    renderCategories();
+    renderProducts();
+    showToast('🗑️ تم حذف المنتج بنجاح', 'info');
+  }
+}
+
+function openAdminLoginModal() {
+  if (isAdminLoggedIn) {
+    showToast('أنت في وضع مالك المتجر بالفعل! 🔑', 'info');
+  } else {
+    openModal('adminLoginModal');
+    const input = document.getElementById('adminPassword');
+    if (input) { input.value = ''; input.focus(); }
+  }
+}
+
+function handleAdminLogin(e) {
+  e.preventDefault();
+  const val = document.getElementById('adminPassword').value.trim();
+  if (val === getAdminPassword()) {
+    isAdminLoggedIn = true;
+    localStorage.setItem(STORAGE_KEY_ADMIN, 'true');
+    updateAdminUI();
+    renderProducts();
+    closeModal('adminLoginModal');
+    showToast('مرحباً بك! تم تفعيل لوحة الإدارة 🔑', 'success');
+  } else {
+    showToast('❌ كلمة المرور غير صحيحة!', 'error');
+  }
+}
+
+function logoutAdmin() {
+  isAdminLoggedIn = false;
+  localStorage.setItem(STORAGE_KEY_ADMIN, 'false');
+  updateAdminUI();
+  renderProducts();
+  showToast('تم الخروج من وضع الإدارة.', 'info');
+}
+
+function updateAdminUI() {
+  const banner = document.getElementById('adminBanner');
+  const hBtn = document.getElementById('headerAddBtn');
+  const sBtn = document.getElementById('sectionAddBtn');
+  const ownerLink = document.querySelector('.owner-login-link');
+  
+  // التحقق مما إذا كان الرابط يحتوي على كلمة سرية للمالك مثل ?admin أو ?owner أو ?secret
+  const urlParams = new URLSearchParams(window.location.search);
+  const isSecretUrl = urlParams.has('admin') || urlParams.has('owner') || urlParams.has('secret');
+
+  if (banner) banner.style.display = isAdminLoggedIn ? 'block' : 'none';
+  if (hBtn) hBtn.style.display = isAdminLoggedIn ? 'inline-flex' : 'none';
+  if (sBtn) sBtn.style.display = isAdminLoggedIn ? 'inline-flex' : 'none';
+  
+  // زر دخول المالك مخفي عن جميع العملاء، ويظهر فقط إذا فتح المالك رابط به ?admin أو كان مسجل دخول
+  if (ownerLink) {
+    if (isAdminLoggedIn || isSecretUrl) {
+      ownerLink.classList.add('visible');
+    } else {
+      ownerLink.classList.remove('visible');
+    }
+  }
+
+  if (isAdminLoggedIn) loadWhatsAppSettings();
+}
+
+function openChangePasswordModal() {
+  if (!isAdminLoggedIn) return;
+  ['currentPass','newPass','confirmNewPass'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  openModal('changePasswordModal');
+}
+
+function handleChangePassword(e) {
+  e.preventDefault();
+  if (!isAdminLoggedIn) return;
+  const cur = document.getElementById('currentPass').value.trim();
+  const nPass = document.getElementById('newPass').value.trim();
+  const cPass = document.getElementById('confirmNewPass').value.trim();
+  if (cur !== getAdminPassword()) { showToast('❌ كلمة المرور الحالية غير صحيحة!', 'error'); return; }
+  if (nPass !== cPass) { showToast('❌ كلمة المرور الجديدة غير متطابقة مع التأكيد!', 'error'); return; }
+  if (nPass.length < 4) { showToast('⚠️ يرجى اختيار كلمة مرور من 4 أحرف على الأقل!', 'error'); return; }
+  localStorage.setItem(STORAGE_KEY_PASS, nPass);
+  closeModal('changePasswordModal');
+  showToast('🔑 تم تغيير كلمة المرور السرية بنجاح!', 'success');
+}
+
+function saveWhatsAppNumber() {
+  const input = document.getElementById('adminWhatsAppInput');
+  if (!input) return;
+  const num = input.value.trim().replace(/[^0-9]/g, '');
+  if (num.length < 7) {
+    showToast('الرجاء إدخال رقم واتساب صحيح (مثال: 967739375541)', 'error');
+  } else {
+    localStorage.setItem(STORAGE_KEY_WHATSAPP, num);
+    showToast('✅ تم حفظ رقم الواتساب الجديد: ' + num, 'success');
+  }
+}
+
+function loadWhatsAppSettings() {
+  const input = document.getElementById('adminWhatsAppInput');
+  if (input) input.value = getWhatsAppNumber();
+}
+
+function selectPresetImage(url) {
+  document.getElementById('pImgUrl').value = url;
+  updateImagePreview(url);
+}
+
+function updateImagePreview(url) {
+  const placeholder = document.getElementById('previewPlaceholder');
+  const img = document.getElementById('imgPreview');
+  if (url) {
+    img.src = url; img.style.display = 'block';
+    if (placeholder) placeholder.style.display = 'none';
+  } else {
+    resetImagePreview();
+  }
+}
+
+function resetImagePreview() {
+  const placeholder = document.getElementById('previewPlaceholder');
+  const img = document.getElementById('imgPreview');
+  if (img) { img.src = ''; img.style.display = 'none'; }
+  if (placeholder) placeholder.style.display = 'block';
+}
+
+function openModal(id) {
+  const m = document.getElementById(id);
+  if (m) m.classList.add('active');
+}
+
+function closeModal(id) {
+  const m = document.getElementById(id);
+  if (m) m.classList.remove('active');
+}
+
+function showToast(msg, type = 'success') {
+  const toast = document.getElementById('toast');
+  const txt = document.getElementById('toastMessage');
+  const icon = document.getElementById('toastIcon');
+  if (!toast || !txt || !icon) return;
+  txt.textContent = msg;
+  toast.className = 'toast show ' + type;
+  if (type === 'success') icon.className = 'fa-solid fa-circle-check';
+  else if (type === 'error') icon.className = 'fa-solid fa-circle-xmark';
+  else icon.className = 'fa-solid fa-circle-info';
+  setTimeout(() => { toast.classList.remove('show'); }, 3500);
+}
+
+function escapeHtml(str) {
+  return str ? String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : '';
+}
+
+function shareProduct(id) {
+  const p = products.find(item => item.id === id);
+  if (!p) return;
+  const shareData = {
+    title: p.title,
+    text: `🎁 ${p.title} - ${p.price}\nمن متجر ريشة فن 🌸🎨\n\n${p.desc || ''}`,
+    url: window.location.href
+  };
+  if (navigator.share) {
+    navigator.share(shareData).catch(() => {});
+  } else {
+    window.open(`https://wa.me/${getWhatsAppNumber()}?text=${encodeURIComponent(shareData.text + '\n' + shareData.url)}`, '_blank');
+  }
+  showToast('تم فتح المشاركة 📤', 'info');
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.addEventListener('scroll', function() {
+  const btn = document.getElementById('scrollTopBtn');
+  if (btn) {
+    if (window.scrollY > 300) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+  }
+});
+</script>
+</body>
+</html>

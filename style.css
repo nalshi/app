@@ -1,0 +1,856 @@
+/* ============================================================
+   ريشة فن — صفحة تسجيل الدخول
+   الأنماط: Modern Glassmorphism · Neumorphism خفيف · Premium
+   HTML5 · CSS3 فقط — بدون مكتبات خارجية
+   ============================================================ */
+
+/* ===================== 1) المتغيرات العامة ===================== */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  /* الألوان الأساسية */
+  --gold:      #c9a24b;
+  --gold-light:#f3dd8f;
+  --gold-deep: #a17c1f;
+  --pink:      #f472b6;
+  --pink-soft: #ffd3e4;
+  --purple:    #8b5cf6;
+  --purple-soft:#c4b5fd;
+
+  /* ألوان النصوص */
+  --ink:       #332d47;
+  --muted:     #7a7191;
+  --danger:    #e11d48;
+
+  /* الزجاج */
+  --glass-bg:     rgba(255, 255, 255, 0.42);
+  --glass-border: rgba(255, 255, 255, 0.72);
+
+  /* التدرجات */
+  --grad-main: linear-gradient(135deg, #a78bfa 0%, #b06ff2 30%, #f472b6 70%, #f7c873 120%);
+  --grad-gold: linear-gradient(120deg, #b8860b, #e9c15b 25%, #fbf0c4 45%, #e9c15b 65%, #b8860b 90%);
+
+  /* الظلال والزوايا */
+  --radius: 26px;
+  --shadow-card: 0 34px 90px -24px rgba(120, 90, 200, 0.45), 0 10px 34px -14px rgba(180, 100, 240, 0.28);
+  --shadow-gold: 0 16px 36px -12px rgba(201, 162, 75, 0.5);
+}
+
+/* ===================== 2) التهيئة العامة ===================== */
+*,
+*::before,
+*::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { color-scheme: light; scroll-behavior: smooth; }
+
+html, body { overflow-x: hidden; }
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 34px 16px;
+  font-family: "Tajawal", "Cairo", sans-serif;
+  color: var(--ink);
+  background: linear-gradient(120deg, #fdf6ff, #fff6fa, #f3edff, #fff9f0, #fdf6ff);
+  background-size: 300% 300%;
+  animation: bgShift 22s ease infinite;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* تخصيص تحديد النص */
+::selection { background: rgba(176, 111, 242, 0.28); color: var(--ink); }
+
+/* حلقة تركيز واضحة لتحسين إمكانية الوصول */
+:focus-visible {
+  outline: 2px solid rgba(139, 92, 246, 0.7);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; }
+input, button { font: inherit; }
+
+/* ===================== 3) الخلفية المتحركة ===================== */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* حاوية البارالاكس لكل طبقة */
+.plx {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+/* ---- طبقات Aurora ---- */
+.aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.6;
+  will-change: transform;
+}
+.a1 {
+  width: 64vmax; height: 64vmax;
+  top: -22vmax; right: -16vmax;
+  background: radial-gradient(circle at 32% 32%, rgba(196, 181, 253, 0.9), transparent 62%);
+  animation: drift1 26s ease-in-out infinite alternate;
+}
+.a2 {
+  width: 58vmax; height: 58vmax;
+  bottom: -26vmax; left: -14vmax;
+  background: radial-gradient(circle at 58% 42%, rgba(251, 207, 232, 0.95), transparent 62%);
+  animation: drift2 30s ease-in-out infinite alternate;
+}
+.a3 {
+  width: 46vmax; height: 46vmax;
+  top: 18%; left: 32%;
+  background: radial-gradient(circle at 50% 50%, rgba(254, 243, 199, 0.9), transparent 60%);
+  animation: drift3 34s ease-in-out infinite alternate;
+}
+
+/* ---- كرات ضوئية عائمة ---- */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(46px);
+  will-change: transform;
+}
+.o1 { width: 300px; height: 300px; top: 10%;  left: 6%;
+      background: radial-gradient(circle at 35% 35%, rgba(244, 114, 182, 0.55), rgba(244, 114, 182, 0.04) 72%);
+      animation: floatY 13s ease-in-out infinite; }
+.o2 { width: 260px; height: 260px; bottom: 16%; right: 8%;
+      background: radial-gradient(circle at 60% 40%, rgba(139, 92, 246, 0.5), rgba(139, 92, 246, 0.04) 72%);
+      animation: floatY 15s ease-in-out -4s infinite; }
+.o3 { width: 190px; height: 190px; top: 44%; right: 24%;
+      background: radial-gradient(circle at 45% 45%, rgba(247, 200, 115, 0.6), rgba(247, 200, 115, 0.05) 72%);
+      animation: floatY 11s ease-in-out -7s infinite; }
+.o4 { width: 220px; height: 220px; bottom: 8%; left: 28%;
+      background: radial-gradient(circle at 40% 60%, rgba(196, 181, 253, 0.6), rgba(196, 181, 253, 0.05) 72%);
+      animation: floatY 17s ease-in-out -2s infinite; }
+
+/* ---- خطوط هندسية دائرية ---- */
+.rings { position: absolute; inset: 0; }
+.ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(139, 92, 246, 0.16);
+  will-change: transform;
+}
+.r1 { width: 40vmin; height: 40vmin; animation: spinCenter 42s linear infinite; }
+.r2 { width: 64vmin; height: 64vmin; border-style: dashed; border-color: rgba(244, 114, 182, 0.2);
+      animation: spinCenterRev 60s linear infinite; }
+.r3 { width: 92vmin; height: 92vmin; border-color: rgba(201, 162, 75, 0.22);
+      animation: spinCenter 80s linear infinite; }
+
+/* ---- جسيمات Canvas ---- */
+#particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- تظليل الحواف ---- */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(120, 90, 200, 0.07) 100%);
+}
+
+/* ===================== 4) مؤثر الماوس ===================== */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0;
+  will-change: transform;
+}
+.cursor-dot {
+  width: 8px; height: 8px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  box-shadow: 0 0 12px rgba(247, 200, 115, 0.85);
+}
+.cursor-ring {
+  width: 38px; height: 38px;
+  border: 1.5px solid rgba(139, 92, 246, 0.55);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.35), inset 0 0 14px rgba(244, 114, 182, 0.15);
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+/* إظهار المؤثر فقط عند وجوده عبر JS مع أجهزة الماوس الدقيقة */
+html.custom-cursor, html.custom-cursor * { cursor: none !important; }
+html.custom-cursor .cursor-dot,
+html.custom-cursor .cursor-ring { opacity: 1; }
+html.custom-cursor .cursor-ring.is-hover {
+  width: 52px; height: 52px;
+  border-color: rgba(244, 114, 182, 0.7);
+  background: rgba(244, 114, 182, 0.06);
+}
+html.custom-cursor .cursor-ring.is-down { transform: translate(-50%, -50%) scale(0.72) !important; }
+html.custom-cursor .cursor-dot.is-down { transform: translate(-50%, -50%) scale(2.1) !important; }
+
+/* ===================== 5) تخطيط الصفحة ===================== */
+.page {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 34px;
+  width: min(100%, 560px);
+}
+
+/* ===================== 6) الشعار ===================== */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.brand-mark {
+  position: relative;
+  width: 76px; height: 76px;
+  margin-bottom: 16px;
+  animation: fadeUp 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.12) 0.15s both;
+}
+/* حلقة ذهبية متقطعة تدور حول الماس */
+.brand-ring {
+  position: absolute;
+  inset: 0;
+  border: 1.5px dashed rgba(176, 111, 242, 0.45);
+  border-radius: 50%;
+  animation: spin 16s linear infinite;
+}
+/* الماسة */
+.brand-gem {
+  position: absolute;
+  inset: 8px;
+  display: grid;
+  place-items: center;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  background: linear-gradient(135deg, #a78bfa, #f472b6 55%, #f7c873);
+  filter: drop-shadow(0 12px 24px rgba(176, 111, 242, 0.45));
+  animation: floatY 5s ease-in-out infinite;
+}
+.brand-gem svg { width: 30px; height: 30px; color: #fff; }
+
+.brand-name {
+  font-family: "Cairo", sans-serif;
+  font-size: clamp(1.9rem, 4vw, 2.4rem);
+  font-weight: 900;
+  line-height: 1.2;
+  background: var(--grad-gold);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fadeUp 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.12) 0.3s both, goldShift 6s ease-in-out 1s infinite;
+}
+.brand-welcome {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  animation: fadeUp 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.12) 0.45s both;
+}
+
+/* ===================== 7) البطاقة الزجاجية ===================== */
+.card-3d {
+  position: relative;
+  width: min(100%, 470px);
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.card {
+  position: relative;
+  padding: 38px 34px 32px;
+  border-radius: var(--radius);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  backdrop-filter: blur(22px) saturate(150%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  overflow: hidden;
+  animation: cardIn 1s cubic-bezier(0.2, 0.9, 0.3, 1.12) 0.55s both;
+  will-change: transform;
+}
+
+/* حدّ متدرج دوّار حول البطاقة (Border Glow) */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 0deg,
+    rgba(176, 111, 242, 0.55) 60deg,
+    rgba(244, 114, 182, 0.55) 140deg,
+    rgba(247, 200, 115, 0.65) 220deg,
+    transparent 300deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: borderSpin 9s linear infinite;
+  pointer-events: none;
+}
+
+/* إبقاء المحتوى فوق الحد والانعكاس */
+.card > * { position: relative; z-index: 1; }
+
+/* انعكاس زجاجي متحرك يمسح البطاقة */
+.card-shine {
+  position: absolute;
+  top: -70%;
+  left: 0;
+  width: 100%;
+  height: 240%;
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.4) 50%, transparent 58%);
+  transform: translateX(-130%) rotate(3deg);
+  animation: sheen 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* إضاءة زجاجية تتبع الماوس داخل البطاقة */
+.card-3d::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  pointer-events: none;
+  background: radial-gradient(230px circle at var(--glowX, 50%) var(--glowY, 50%), rgba(255, 255, 255, 0.6), transparent 62%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 2;
+}
+.card-3d:hover::after { opacity: 1; }
+
+/* دعم المتصفحات التي لا تدعم backdrop-filter */
+@supports not (backdrop-filter: blur(1px)) {
+  .card { background: rgba(255, 255, 255, 0.9); }
+}
+
+/* ===================== 8) الحقول ===================== */
+.field { margin-bottom: 20px; }
+
+.field > label {
+  display: block;
+  margin-bottom: 9px;
+  font-family: "Cairo", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #453c5e;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap input {
+  width: 100%;
+  padding: 15px 46px;
+  font-size: 1rem;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1.5px solid rgba(139, 92, 246, 0.14);
+  border-radius: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+.input-wrap input::placeholder { color: rgba(122, 113, 145, 0.65); }
+.input-wrap input:hover { border-color: rgba(139, 92, 246, 0.3); }
+
+/* حالة التركيز: توهج + ظل + خط متحرك */
+.input-wrap:focus-within input {
+  border-color: rgba(139, 92, 246, 0.55);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12), 0 10px 26px -12px rgba(139, 92, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+/* الخط المتحرك أسفل الحقل */
+.input-line {
+  position: absolute;
+  bottom: -1px;
+  right: 18px;
+  left: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--pink), var(--gold-light));
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.4);
+}
+.input-wrap:focus-within .input-line { transform: scaleX(1); }
+
+/* توهج خلفي أثناء الكتابة */
+.input-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 20px;
+  background: radial-gradient(60% 120% at 50% 50%, rgba(139, 92, 246, 0.22), rgba(244, 114, 182, 0.1) 45%, transparent 75%);
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+.input-wrap.is-active .input-glow { opacity: 1; }
+
+/* أيقونات الحقول */
+.field-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 21px; height: 21px;
+  color: var(--muted);
+  transition: color 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+.field-icon svg { width: 100%; height: 100%; }
+.input-wrap:focus-within .field-icon { color: var(--purple); transform: translateY(-50%) scale(1.08); }
+
+/* زر إظهار كلمة المرور */
+.pass-toggle {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px; height: 36px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.pass-toggle:hover { background: rgba(139, 92, 246, 0.1); color: var(--purple); }
+.pass-toggle:active { transform: translateY(-50%) scale(0.92); }
+.pass-toggle .eye { width: 20px; height: 20px; }
+.pass-toggle .eye-closed { display: none; }
+.pass-toggle.visible .eye-open { display: none; }
+.pass-toggle.visible .eye-closed { display: block; }
+
+/* ---- رسائل الخطأ ---- */
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0;
+  max-height: 0;
+  overflow: hidden;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--danger);
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.3s ease;
+}
+.field-error .err-ico { width: 15px; height: 15px; flex-shrink: 0; }
+.field.error .field-error { margin-top: 8px; max-height: 40px; opacity: 1; }
+
+/* حالة الخطأ في الحقل */
+.field.error .input-wrap input {
+  border-color: rgba(244, 63, 94, 0.6);
+  background: rgba(255, 241, 244, 0.75);
+  box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.1);
+}
+.field.error .input-line { background: linear-gradient(90deg, #fb7185, #f43f5e); }
+.field.error .field-icon { color: var(--danger); }
+
+/* اهتزاز أنيق عند الخطأ */
+.field.shake .input-wrap input { animation: shake 0.4s ease; }
+
+/* ---- صف: تذكرني + نسيت كلمة المرور ---- */
+.field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+/* مربع تذكرني مخصص */
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+.check input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.check-box {
+  width: 20px; height: 20px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  border: 1.5px solid rgba(139, 92, 246, 0.28);
+  background: #fff;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.check-box svg {
+  width: 12px; height: 12px;
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.check:hover .check-box { border-color: rgba(139, 92, 246, 0.55); }
+.check input:checked + .check-box {
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  border-color: transparent;
+  box-shadow: 0 5px 12px -3px rgba(176, 111, 242, 0.55);
+}
+.check input:checked + .check-box svg { opacity: 1; transform: scale(1); }
+.check input:focus-visible + .check-box { outline: 2px solid rgba(139, 92, 246, 0.7); outline-offset: 2px; }
+
+/* رابط نسيت كلمة المرور */
+.link-forgot {
+  position: relative;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--purple);
+  transition: color 0.3s ease;
+}
+.link-forgot::after {
+  content: "";
+  position: absolute;
+  right: 0; bottom: -3px;
+  width: 100%; height: 1.5px;
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+}
+.link-forgot:hover { color: var(--pink); }
+.link-forgot:hover::after { transform: scaleX(1); }
+
+/* ===================== 9) زر تسجيل الدخول ===================== */
+.btn {
+  position: relative;
+  width: 100%;
+  margin-top: 26px;
+  padding: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 16px;
+  font-family: "Cairo", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--grad-main);
+  background-size: 180% auto;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 16px 34px -12px rgba(180, 100, 240, 0.6), 0 4px 12px -4px rgba(176, 111, 242, 0.4);
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.3), box-shadow 0.3s ease, background-position 0.5s ease;
+}
+.btn:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.01);
+  background-position: 100% center;
+  box-shadow: 0 22px 44px -14px rgba(180, 100, 240, 0.75), 0 6px 16px -4px rgba(176, 111, 242, 0.5);
+}
+.btn:active:not(:disabled) { transform: translateY(0) scale(0.97); box-shadow: 0 10px 24px -12px rgba(180, 100, 240, 0.6); }
+.btn:disabled { cursor: default; }
+
+/* عناصر الزر فوق تموجات الريبل */
+.btn > * { position: relative; z-index: 1; }
+
+.btn-text { transition: opacity 0.25s ease; }
+
+/* لمعة تمر فوق الزر عند الهوفر */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -70%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-22deg);
+  transition: left 0.6s ease;
+}
+.btn:hover:not(:disabled)::after { left: 130%; }
+
+/* تموجات الريبل عند الضغط */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 62%);
+  transform: scale(0);
+  animation: ripple 0.65s ease-out forwards;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* مؤشر التحميل */
+.btn-spinner {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 24px; height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+}
+.btn.loading .btn-spinner { opacity: 1; animation: spin 0.8s linear infinite; }
+.btn.loading .btn-text { opacity: 0; }
+
+/* علامة النجاح */
+.btn-check {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 26px; height: 26px;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.4);
+}
+.btn-check path { stroke-dasharray: 30; stroke-dashoffset: 30; }
+.btn.success {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  background-size: 100% auto;
+  box-shadow: 0 16px 36px -12px rgba(16, 185, 129, 0.6);
+}
+.btn.success .btn-check { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.btn.success .btn-check path { animation: draw 0.6s ease forwards 0.2s; }
+.btn.success .btn-text { opacity: 0; }
+.btn.success::after { display: none; }
+
+/* ===================== 10) الفاصل ===================== */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 26px 0 18px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+.divider::before,
+.divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+}
+.divider::before { background: linear-gradient(270deg, rgba(139, 92, 246, 0.25), transparent); }
+.divider::after  { background: linear-gradient(90deg, rgba(139, 92, 246, 0.25), transparent); }
+
+/* ===================== 11) أزرار وسائل التواصل ===================== */
+.socials {
+  display: flex;
+  gap: 12px;
+}
+.social {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 12px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 6px 6px 16px rgba(180, 150, 220, 0.18), -6px -6px 16px rgba(255, 255, 255, 0.95);
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.3), box-shadow 0.3s ease, background 0.3s ease;
+}
+.social svg { width: 20px; height: 20px; flex-shrink: 0; }
+.social:hover {
+  transform: translateY(-4px);
+  background: #fff;
+  box-shadow: 10px 12px 24px -8px rgba(180, 150, 220, 0.35), -6px -6px 16px rgba(255, 255, 255, 0.95);
+}
+.social:active { transform: translateY(0) scale(0.95); }
+
+/* ===================== 12) إنشاء حساب جديد ===================== */
+.signup {
+  margin-top: 22px;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.signup a {
+  position: relative;
+  margin-inline-start: 4px;
+  font-weight: 800;
+  font-family: "Cairo", sans-serif;
+  background: var(--grad-gold);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: filter 0.3s ease;
+}
+.signup a:hover { filter: drop-shadow(0 2px 10px rgba(201, 162, 75, 0.5)); }
+
+/* ===================== 13) التذييل ===================== */
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  opacity: 0.85;
+  animation: fadeIn 1s ease 0.85s both;
+}
+.foot svg { width: 15px; height: 15px; }
+
+/* ===================== 14) التنبيه المنبثق (Toast) ===================== */
+.toast {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 22px 48px -14px rgba(120, 90, 200, 0.4);
+  z-index: 300;
+  transform: translate(-50%, 130%);
+  opacity: 0;
+  transition: transform 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.2), opacity 0.4s ease;
+}
+.toast svg { width: 20px; height: 20px; color: var(--gold); flex-shrink: 0; }
+.toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+/* ===================== 15) حركات المفاتيح (Keyframes) ===================== */
+@keyframes bgShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@keyframes drift1 {
+  from { transform: translate(0, 0) scale(1) rotate(0deg); }
+  to   { transform: translate(-6%, 8%) scale(1.15) rotate(12deg); }
+}
+@keyframes drift2 {
+  from { transform: translate(0, 0) scale(1.1) rotate(0deg); }
+  to   { transform: translate(5%, -7%) scale(0.95) rotate(-10deg); }
+}
+@keyframes drift3 {
+  from { transform: translate(0, 0) scale(0.95); }
+  to   { transform: translate(4%, 5%) scale(1.1); }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-24px); }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spinCenter {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes spinCenterRev {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to   { transform: translate(-50%, -50%) rotate(0deg); }
+}
+@keyframes borderSpin { to { --angle: 360deg; } }
+@keyframes sheen {
+  0%, 58% { transform: translateX(-130%) rotate(3deg); }
+  100%    { transform: translateX(130%) rotate(3deg); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(26px); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(44px) scale(0.94) rotateX(12deg); filter: blur(10px); }
+  to   { opacity: 1; transform: translateY(0) scale(1) rotateX(0); filter: blur(0); }
+}
+@keyframes goldShift {
+  0%, 100% { background-position: 0% center; }
+  50%      { background-position: 100% center; }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+@keyframes ripple {
+  to { transform: scale(1); opacity: 0; }
+}
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ===================== 16) التجاوب (Responsive) ===================== */
+
+/* الأجهزة اللوحية والهواتف */
+@media (max-width: 640px) {
+  body { padding: 24px 14px; }
+  .page { gap: 26px; }
+  .card { padding: 30px 22px 26px; border-radius: 22px; }
+  .brand-mark { width: 66px; height: 66px; }
+  .social { padding: 11px 8px; gap: 7px; }
+  .social span { font-size: 0.72rem; }
+  .foot { text-align: center; }
+}
+
+/* الشاشات الصغيرة جداً */
+@media (max-width: 380px) {
+  .social svg { width: 18px; height: 18px; }
+  .field-row { justify-content: center; }
+}
+
+/* الشاشات الكبيرة جداً */
+@media (min-width: 1600px) {
+  .card { padding: 44px 40px 36px; }
+  .input-wrap input { padding: 17px 48px; }
+}
+
+/* ===================== 17) تقليل الحركة (Accessibility) ===================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+  .brand-ring { display: none; }
+}
